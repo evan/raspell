@@ -15,7 +15,7 @@ Mac install:
   sudo port install aspell aspell-dict-en
 
 Ubuntu install: 
-  sudo port install aspell aspell-dict-en
+  sudo apt-get install aspell libaspell-dev aspell-en
   
 == Usage
 
