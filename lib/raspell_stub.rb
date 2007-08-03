@@ -6,7 +6,7 @@ raise "This file is only for documentation purposes. Require #{File.dirname(__FI
 class ::Aspell
 
   # Creates an Aspell instance. All parameters are optional and have default values. In most situations it is enough to create an Aspell-instance with only a language.
-  # * <tt>language</tt> -  ISO639 language code plus optional ISO 3166 counry code as string (eg: "de" or "us_US").
+  # * <tt>language</tt> -  ISO639 language code plus optional ISO 3166 counry code as string (eg: "de" or "en_US").
   # * <tt>jargon</tt> - A special jargon of the selected language.
   # * <tt>size</tt> - The size of the dictionary to chose (if there are options).
   # * <tt>encoding</tt> - The encoding to use.
