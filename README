@@ -46,5 +46,5 @@ The most useful options are setting the <tt>suggestion_mode</tt>, and setting th
 
   speller.set_option("ignore-case", "false")
 
-The documentation for Aspell enumerates the passthrough options. See http://aspell.net/man-html/The-Options.html .
+The documentation for Aspell itself enumerates the passthrough options. See http://aspell.net/man-html/The-Options.html .
 
