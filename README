@@ -1,0 +1,133 @@
+
+RASPELL - an interface binding for ruby to aspell.
+==================================================
+
+Author:
+-------
+  - Matthias Veit  <matthias_veit@yahoo.de>
+
+Requirements:
+-------------
+  - aspell Ver 0.5 (or later) - see aspell.net.
+
+Documentation:
+--------------
+Aspell comes with a very brief description of every functionality.
+Read the manual for the use of aspell.
+
+Notes for the Wrapper:
+----------------------
+Aspell comes with a lot of classes (iterators, stringhelpers etc.) 
+that are not needed by ruby and are therefore not bridged.
+Only 2 classes are introduced:
+
+  => Aspell:
+  Almost all functionality of aspell is accessible via this class:
+ 
+    *inheritance tree:
+       -Object
+       
+    *included modules:
+       -Kernel
+       
+    *defined constants:
+       ULTRA,               - option of suggestion mode
+       NORMAL,              - option of suggestion mode
+       FAST,                - option of suggestion mode
+       BADSPELLERS,         - option of suggestion mode
+       CheckerOptions       - list of checker options
+       DictionaryOptions,   - list of dictionary options
+       FilterOptions,       - list of filter options
+       MiscOptions,         - list of misc options
+       RunTogetherOptions,  - list of run together options
+       UtilityOptions,      - list of utility options
+
+    *class methods:
+       -list_dicts()
+            List of all available dictionaries.
+            Return a list of AspellDictInfo objects.
+       -new(language, jargon, size, encoding)
+            Constructor.
+             -language ISO639 language code plus optional ISO 3166 counry code as string (eg: "de" or "us_US")
+             -jargon a special jargon of the selected language
+             -size the size of the dictionary to chose (if there are options)
+             -encoding the encoding to use
+            Note: All parameters are optional and have default values.
+                  In most cases it is enough to create an Aspell-instance by eg: Aspell.new("us").
+
+    *instance methods:
+       -add_to_personal(word)   
+            Add the word to the private dictionary.
+       -add_to_session(word)
+            Add the word to the session list (Ignore the
+            word for the rest of the session). The session
+            relates to the lifetime of the object.
+       -check(word)
+            Check given word for correctnes. Returns true
+            if word is correct, otherwise false.
+       -correct_file(filename)
+            Check the whole file with name filename.
+            This method needs a block, which will yield
+            each misspelled word.
+       -correct_lines(array_of_strings)
+            Check an array of strings for correctnes.
+            This method needs a block, which will yield
+            each misspelled word.
+       -clear_session()
+            Delete all words inside the session-wordlist.
+       -get_option(option)
+            Value of option in config.
+       -get_option_as_list(option)
+            Value of option in config.
+            The result is a list of strings.
+       -list_misspelled(array_of_strings)
+            Check an array of strings for correctnes.
+            Return a list of all words, that are misspelled.
+       -personal_wordlist()
+            Return a list of words inside private dictionary.
+       -save_all_word_lists()
+            All changed dictionaries get synchronized.
+       -session_wordlist()
+            Return a list of words inside session wordlist.
+       -set_option(option, value)
+            Set a specified configurable option to value.
+       -suggest(word)
+            Make a suggestion to the given misspelled word.
+            Return a list of words, that are possible suggestions
+            to the misspelled given word.
+       -suggestion_mode=(mode)
+            Set the suggestion mode to one of:
+            Aspell::ULTRA   - look for soundslikes with one edit distance
+            Aspell::FAST    - like ultra, but with typo analysis
+            Aspell::NORMAL  - look for soundslikes with two edit distances + typo analysis
+            Aspell::BADSPELLERS  - tailored for bad spellers
+
+
+  => AspellDictInfo:
+     Aspell.list_dicts return a list of AspellDictInfo-objects. Each dictionary is
+     described by an instance of AspellDictInfo:
+
+    *inheritance tree:
+       -Object
+
+    *included modules:
+       -Kernel
+
+    *class methods:
+       -new()
+            Constructor. Never invoke this method by hand.
+
+    *instance methods:
+       -code()
+            The code of the dictionary.
+       -jargon()
+            The jargon of the dictionary.
+       -name()
+            The name of the dictionary.
+       -size()
+            The size of the dictionary.
+
+Example:
+--------
+See in examples directory inside distribution.
+
