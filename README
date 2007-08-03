@@ -11,12 +11,11 @@ Copyright 2007 Cloudburst, LLC. Portions copyright 2005 Matthias Veit, Biro Eszt
 
 Raspell requires Aspell version 0.6 (http://www.aspell.net). 
 
-* Mac install:: <tt>sudo port install aspell aspell-dict-en</tt>
-* Ubuntu install:: <tt>sudo port install aspell aspell-dict-en</tt>
+Mac install: 
+  sudo port install aspell aspell-dict-en
 
-Then, install the <tt>raspell</tt> gem:
-
-  sudo gem install raspell
+Ubuntu install: 
+  sudo port install aspell aspell-dict-en
   
 == Usage
 
