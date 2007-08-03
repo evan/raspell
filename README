@@ -9,9 +9,16 @@ Copyright 2007 Cloudburst, LLC. Portions copyright 2005 Matthias Veit, Biro Eszt
 
 == Requirements
 
-* Aspell version 0.6 (http://www.aspell.net)
+Raspell requires Aspell version 0.6 (http://www.aspell.net). 
 
-== Basic usage
+* Mac install:: <tt>sudo port install aspell aspell-dict-en</tt>
+* Ubuntu install:: <tt>sudo port install aspell aspell-dict-en</tt>
+
+Then, install the <tt>raspell</tt> gem:
+
+  sudo gem install raspell
+  
+== Usage
 
 Aspell lets you <tt>check</tt> words and <tt>suggest</tt> corrections. For example:
    
@@ -48,3 +55,6 @@ The most useful options are <tt>suggestion_mode</tt>, and the passthrough option
 
 See http://aspell.net/man-html/The-Options.html for a list of the passthrough options. 
 
+== Futher resources
+
+* http://blog.evanweaver.com/pages/code#raspell
