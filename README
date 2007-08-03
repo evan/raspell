@@ -1,7 +1,7 @@
 
 raspell
 
-An interface binding for Aspell.
+An interface binding for the Aspell spelling checker.
 
 == License
 
