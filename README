@@ -9,7 +9,7 @@ Copyright 2007 Cloudburst, LLC. Portions copyright 2005 Matthias Veit, Biro Eszt
 
 == Requirements
 
-Raspell requires Aspell version 0.6 (http://www.aspell.net). 
+Raspell requires Aspell version 0.6 (http://www.aspell.net) and at least one Aspell dictionary. 
 
 Mac install: 
   sudo port install aspell aspell-dict-en
