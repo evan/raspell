@@ -42,9 +42,9 @@ Note that <tt>suggest</tt> returns an array of suggestions even for words that a
 
 == Options
 
-The most useful options are setting the <tt>suggestion_mode</tt>, and setting the passthrough option <tt>ignore_case</tt>. Passthrough options are a bit strange and have to be set as so:
+The most useful options are <tt>suggestion_mode</tt>, and the passthrough option <tt>ignore_case</tt>. Passthrough options have to be set as so:
 
-  speller.set_option("ignore-case", "false")
+  speller.set_option("ignore-case", "true")
 
-The documentation for Aspell itself enumerates the passthrough options. See http://aspell.net/man-html/The-Options.html .
+See http://aspell.net/man-html/The-Options.html for a list of the passthrough options. 
 
