@@ -1,25 +1,16 @@
 
-RASPELL - an interface binding for ruby to aspell.
-==================================================
+raspell
 
-Author:
--------
-  - Matthias Veit  <matthias_veit@yahoo.de>
+An interface binding for Aspell.
 
-Requirements:
--------------
-  - aspell Ver 0.5 (or later) - see aspell.net.
+== License
 
-Documentation:
---------------
-Aspell comes with a very brief description of every functionality.
-Read the manual for the use of aspell.
+Copyright 2007 Cloudburst, LLC. Portions copyright 2005 Matthias Veit, Biro Eszter. Used with permission. Licensed under the GPL 2.0. See included LICENSE file. 
 
-Notes for the Wrapper:
-----------------------
-Aspell comes with a lot of classes (iterators, stringhelpers etc.) 
-that are not needed by ruby and are therefore not bridged.
-Only 2 classes are introduced:
+== Requirements
+
+* Aspell version 0.6 (http://www.aspell.net)
+
 
   => Aspell:
   Almost all functionality of aspell is accessible via this class:
@@ -126,8 +117,4 @@ Only 2 classes are introduced:
             The name of the dictionary.
        -size()
             The size of the dictionary.
-
-Example:
---------
-See in examples directory inside distribution.
 
