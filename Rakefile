@@ -1,5 +1,6 @@
 
 require 'rubygems'
+gem 'echoe', '=2.2'
 require 'echoe'
 
 Echoe.new("raspell") do |p|  
