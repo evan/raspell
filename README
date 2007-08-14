@@ -19,6 +19,10 @@ Ubuntu:
   
 == Installation
 
+Mac:
+  sudo gem install raspell --with-opt-dir=/opt/local
+  
+Ubuntu:
   sudo gem install raspell
   
 == Usage
