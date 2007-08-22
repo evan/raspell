@@ -62,8 +62,11 @@ The most useful options are <tt>suggestion_mode</tt>, and the passthrough option
 
 See http://aspell.net/man-html/The-Options.html for a list of the passthrough options. 
 
-== Futher resources
+== Reporting problems
 
 * http://rubyforge.org/forum/forum.php?forum_id=13988
+
+== Futher resources
+
 * http://blog.evanweaver.com/articles/2007/03/10/add-gud-spelning-to-ur-railz-app-or-wharever
 
