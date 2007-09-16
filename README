@@ -7,6 +7,8 @@ An interface binding for the Aspell spelling checker.
 
 Copyright 2007 Cloudburst, LLC. Portions copyright 2005 Matthias Veit, Biro Eszter and used with permission. Licensed under the GPL 2.0. See included LICENSE file. 
 
+The public certificate for this gem is at http://rubyforge.org/frs/download.php/25331/evan_weaver-original-public_cert.pem.
+
 == Requirements
 
 Raspell requires Aspell version 0.6 (http://www.aspell.net) and at least one Aspell dictionary. 
