@@ -5,9 +5,11 @@ An interface binding for the Aspell spelling checker.
 
 == License
 
-Copyright 2007 Cloudburst, LLC. Portions copyright 2005 Matthias Veit, Biro Eszter and used with permission. Licensed under the GPL 2.0. See included LICENSE file. 
+Copyright 2007, 2008 Cloudburst, LLC. Licensed under the AFL 3. See the included LICENSE file. Portions copyright 2005 Matthias Veit, Biro Eszter and used with permission. Licensed under the GPL 2.0. See included LICENSE file. 
 
-The public certificate for this gem is at http://rubyforge.org/frs/download.php/25331/evan_weaver-original-public_cert.pem.
+The public certificate for the gem is here[link:http://rubyforge.org/frs/download.php/25331/evan_weaver-original-public_cert.pem]. 
+
+If you like this software, please {make a donation to charity}[link:http://blog.evanweaver.com/donate/] or {recommend Evan}[link:http://www.workingwithrails.com/person/7739-evan-weaver] at Working with Rails.
 
 == Requirements
 
@@ -66,7 +68,7 @@ See http://aspell.net/man-html/The-Options.html for a list of the passthrough op
 
 == Reporting problems
 
-* http://rubyforge.org/forum/forum.php?forum_id=13988
+The support forum is here[http://rubyforge.org/forum/forum.php?forum_id=13988].
 
 Patches and contributions are very welcome. Please note that contributors are required to assign copyright for their additions to Cloudburst, LLC.
 
