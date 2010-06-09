@@ -97,12 +97,12 @@ static void set_option(AspellConfig *config, char *key, char *value) {
 
 static void set_options(AspellConfig *config, VALUE hash) {
     VALUE options = rb_funcall(hash, rb_intern("keys"), 0);
-    int count=RARRAY(options)->len;
+    int count=RARRAY_LEN(options);
     int c = 0;
     //set all values
     while(c<count) {
         //fetch option
-        VALUE option = RARRAY(options)->ptr[c];
+        VALUE option = RARRAY_PTR(options)[c];
         VALUE value = rb_funcall(hash, rb_intern("fetch"), 1, option);
         if (TYPE(option)!=T_STRING) rb_raise(cAspellError, "Given key must be a string.");
         if (TYPE(value )!=T_STRING) rb_raise(cAspellError, "Given value must be a string.");
@@ -512,7 +512,7 @@ static VALUE aspell_correct_lines(VALUE self, VALUE ary) {
         VALUE vline, sline;
         VALUE word, rword;
         char *line;
-        int count=RARRAY(ary)->len;
+        int count=RARRAY_LEN(ary);
         int c=0;
         //create new result array
         result = rb_ary_new();
@@ -520,7 +520,7 @@ static VALUE aspell_correct_lines(VALUE self, VALUE ary) {
         while(c<count) {
             int offset=0;
             //fetch line
-            vline = RARRAY(ary)->ptr[c];
+            vline = RARRAY_PTR(ary)[c];
             //save line
             sline = rb_funcall(vline, rb_intern("dup"), 0);
             //c representation
@@ -607,12 +607,12 @@ static VALUE aspell_list_misspelled(VALUE self, VALUE ary) {
     AspellDocumentChecker * checker = get_checker(speller);
     AspellToken token;
     VALUE word, vline;
-    int count=RARRAY(ary)->len;
+    int count=RARRAY_LEN(ary);
     int c=0;
     //iterate over array
     while(c<count) {
         //process line
-        vline = RARRAY(ary)->ptr[c];
+        vline = RARRAY_PTR(ary)[c];
         aspell_document_checker_process(checker, STR2CSTR(vline), -1);
         //iterate over all misspelled words
         while (token = aspell_document_checker_next_misspelling(checker), token.len != 0) {
