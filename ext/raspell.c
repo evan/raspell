@@ -106,7 +106,7 @@ static void set_options(AspellConfig *config, VALUE hash) {
         VALUE value = rb_funcall(hash, rb_intern("fetch"), 1, option);
         if (TYPE(option)!=T_STRING) rb_raise(cAspellError, "Given key must be a string.");
         if (TYPE(value )!=T_STRING) rb_raise(cAspellError, "Given value must be a string.");
-        set_option(config, STR2CSTR(option), STR2CSTR(value));
+        set_option(config, StringValuePtr(option), StringValuePtr(value));
         c++;
     }
 }
@@ -161,7 +161,7 @@ static VALUE get_list(const AspellWordList *list) {
  * @return regular expression, matching exactly the word as whole.
  */
 static VALUE get_wordregexp(VALUE word) {
-    char *cword = STR2CSTR(word);
+    char *cword = StringValuePtr(word);
     char *result = malloc((strlen(cword)+5)*sizeof(char));
     *result='\0';
     strcat(result, "\\b");
@@ -200,13 +200,13 @@ static VALUE aspell_s_new(int argc, VALUE *argv, VALUE klass) {
     rb_scan_args(argc, argv, "04", &vlang, &vjargon, &vsize, &vencoding);
 
     //language:
-    if (RTEST(vlang)) set_option(config, "lang", STR2CSTR(vlang));
+    if (RTEST(vlang)) set_option(config, "lang", StringValuePtr(vlang));
     //jargon:
-    if (RTEST(vjargon)) set_option(config, "jargon", STR2CSTR(vjargon));
+    if (RTEST(vjargon)) set_option(config, "jargon", StringValuePtr(vjargon));
     //size:
-    if (RTEST(vsize)) set_option(config, "size", STR2CSTR(vsize));
+    if (RTEST(vsize)) set_option(config, "size", StringValuePtr(vsize));
     //encoding:
-    if (RTEST(vencoding)) set_option(config, "encoding", STR2CSTR(vencoding));
+    if (RTEST(vencoding)) set_option(config, "encoding", StringValuePtr(vencoding));
 
     //create speller:
     ret = new_aspell_speller(config);
@@ -293,7 +293,7 @@ static VALUE aspell_s_list_dicts(VALUE klass) {
  */
 static VALUE aspell_set_option(VALUE self, VALUE option, VALUE value) {
     AspellSpeller *speller = get_speller(self);
-    set_option(aspell_speller_config(speller), STR2CSTR(option), STR2CSTR(value));
+    set_option(aspell_speller_config(speller), StringValuePtr(option), StringValuePtr(value));
     return self;
 }
 
@@ -304,7 +304,7 @@ static VALUE aspell_set_option(VALUE self, VALUE option, VALUE value) {
  */
 static VALUE aspell_remove_option(VALUE self, VALUE option) {
     AspellSpeller *speller = get_speller(self);
-    aspell_config_remove(aspell_speller_config(speller), STR2CSTR(option));
+    aspell_config_remove(aspell_speller_config(speller), StringValuePtr(option));
     return self;
 }
 
@@ -314,7 +314,7 @@ static VALUE aspell_remove_option(VALUE self, VALUE option) {
  */
 static VALUE aspell_set_suggestion_mode(VALUE self, VALUE value) {
     AspellSpeller *speller = get_speller(self);
-    set_option(aspell_speller_config(speller), "sug-mode", STR2CSTR(value));
+    set_option(aspell_speller_config(speller), "sug-mode", StringValuePtr(value));
     return self;
 }
 
@@ -372,7 +372,7 @@ static VALUE aspell_clear_session(VALUE self) {
  */
 static VALUE aspell_suggest(VALUE self, VALUE word) {
     AspellSpeller *speller = get_speller(self);
-    return get_list(aspell_speller_suggest(speller, STR2CSTR(word), -1));
+    return get_list(aspell_speller_suggest(speller, StringValuePtr(word), -1));
 }
 
 /**
@@ -382,7 +382,7 @@ static VALUE aspell_suggest(VALUE self, VALUE word) {
  */
 static VALUE aspell_add_to_personal(VALUE self, VALUE word) {
     AspellSpeller *speller = get_speller(self);
-    aspell_speller_add_to_personal(speller, STR2CSTR(word), -1);
+    aspell_speller_add_to_personal(speller, StringValuePtr(word), -1);
     check_for_error(speller);
     return self;
 }
@@ -393,7 +393,7 @@ static VALUE aspell_add_to_personal(VALUE self, VALUE word) {
  */
 static VALUE aspell_add_to_session(VALUE self, VALUE word) {
     AspellSpeller *speller = get_speller(self);
-    aspell_speller_add_to_session(speller, STR2CSTR(word), -1);
+    aspell_speller_add_to_session(speller, StringValuePtr(word), -1);
     check_for_error(speller);
     return self;
 }
@@ -407,7 +407,7 @@ static VALUE aspell_add_to_session(VALUE self, VALUE word) {
 static VALUE aspell_conf_retrieve(VALUE self, VALUE key) {
     AspellSpeller *speller = get_speller(self);
     AspellConfig *config = aspell_speller_config(speller);
-    VALUE result = rb_str_new2(aspell_config_retrieve(config, STR2CSTR(key)));
+    VALUE result = rb_str_new2(aspell_config_retrieve(config, StringValuePtr(key)));
     if (aspell_config_error(config) != 0) {
         rb_raise(cAspellError, aspell_config_error_message(config));
     }
@@ -428,7 +428,7 @@ static VALUE aspell_conf_retrieve_list(VALUE self, VALUE key) {
     const char *option_value;
 
     //retrieve list
-    aspell_config_retrieve_list(config, STR2CSTR(key), container);
+    aspell_config_retrieve_list(config, StringValuePtr(key), container);
     //check for error
     if (aspell_config_error(config) != 0) {
         char *tmp = strdup(aspell_config_error_message(config));
@@ -474,7 +474,7 @@ static VALUE aspell_dump_config(VALUE self) {
 static VALUE aspell_check(VALUE self, VALUE word) {
     AspellSpeller *speller = get_speller(self);
     VALUE result = Qfalse;
-    int code = aspell_speller_check(speller, STR2CSTR(word), -1);
+    int code = aspell_speller_check(speller, StringValuePtr(word), -1);
     if (code == 1)
         result = Qtrue;
     else if (code == 0)
@@ -524,7 +524,7 @@ static VALUE aspell_correct_lines(VALUE self, VALUE ary) {
             //save line
             sline = rb_funcall(vline, rb_intern("dup"), 0);
             //c representation
-            line = STR2CSTR(vline);
+            line = StringValuePtr(vline);
             //process line
             aspell_document_checker_process(checker, line, -1);
             //iterate over all misspelled words
@@ -540,14 +540,14 @@ static VALUE aspell_correct_lines(VALUE self, VALUE ary) {
                 //chomp the string
                 rb_funcall(rword, rb_intern("chomp!"), 0);
                 //empty string -> do nothing
-                if(strlen(STR2CSTR(rword)) == 0) continue;
+                if(strlen(StringValuePtr(rword)) == 0) continue;
                 //remember word for later suggestion
-                aspell_speller_store_replacement(speller, STR2CSTR(word), -1, STR2CSTR(rword), -1);
+                aspell_speller_store_replacement(speller, StringValuePtr(word), -1, StringValuePtr(rword), -1);
                 //substitute the word by replacement
                 rb_funcall(sline, rb_intern("[]="), 3, INT2FIX(token.offset+offset), INT2FIX(token.len), rword);
                 //adjust offset
-                offset += strlen(STR2CSTR(rword))-strlen(STR2CSTR(word));
-                //printf("replace >%s< with >%s< (offset now %d)\n", STR2CSTR(word), STR2CSTR(rword), offset);
+                offset += strlen(StringValuePtr(rword))-strlen(StringValuePtr(word));
+                //printf("replace >%s< with >%s< (offset now %d)\n", StringValuePtr(word), StringValuePtr(rword), offset);
             }
             //push the substituted line to result
             rb_ary_push(result, sline);
@@ -570,7 +570,7 @@ static VALUE aspell_correct_lines(VALUE self, VALUE ary) {
  */
 static VALUE aspell_store_replacement(VALUE self, VALUE badword, VALUE rightword) {
     AspellSpeller *speller = get_speller(self);
-    aspell_speller_store_replacement(speller, STR2CSTR(badword), -1, STR2CSTR(rightword), -1);
+    aspell_speller_store_replacement(speller, StringValuePtr(badword), -1, StringValuePtr(rightword), -1);
     return self;
 }
 
@@ -585,7 +585,7 @@ static VALUE aspell_correct_file(VALUE self, VALUE filename) {
     if (rb_block_given_p()) {
         VALUE content = rb_funcall(rb_cFile, rb_intern("readlines"), 1, filename);
         VALUE newcontent = aspell_correct_lines(self, content);
-        VALUE file = rb_file_open(STR2CSTR(filename), "w+");
+        VALUE file = rb_file_open(StringValuePtr(filename), "w+");
         rb_funcall(file, rb_intern("write"), 1, newcontent);
         rb_funcall(file, rb_intern("close"), 0);
     } else {
@@ -613,7 +613,7 @@ static VALUE aspell_list_misspelled(VALUE self, VALUE ary) {
     while(c<count) {
         //process line
         vline = RARRAY_PTR(ary)[c];
-        aspell_document_checker_process(checker, STR2CSTR(vline), -1);
+        aspell_document_checker_process(checker, StringValuePtr(vline), -1);
         //iterate over all misspelled words
         while (token = aspell_document_checker_next_misspelling(checker), token.len != 0) {
             //extract word by start/length qualifier
