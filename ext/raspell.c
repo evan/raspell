@@ -43,7 +43,7 @@ static VALUE dictinfo_size_str(VALUE self) {
 void Init_dictinfo() {
     //CLASS DEFINITION=========================================================
     cDictInfo = rb_define_class("AspellDictInfo", rb_cObject);
-    
+
     //CLASS METHODS============================================================
     rb_define_singleton_method(cDictInfo, "new", dictinfo_s_new, 0);
 
@@ -289,7 +289,7 @@ static VALUE aspell_s_list_dicts(VALUE klass) {
 }
 
 /**
- * @see set_option. 
+ * @see set_option.
  */
 static VALUE aspell_set_option(VALUE self, VALUE option, VALUE value) {
     AspellSpeller *speller = get_speller(self);
@@ -400,7 +400,7 @@ static VALUE aspell_add_to_session(VALUE self, VALUE word) {
 
 /**
  * Retrieve the value of a specific option.
- * The options are listed inside 
+ * The options are listed inside
  * Aspell::[DictionaryOptions|CheckerOptions|FilterOptions|RunTogetherOptions|MiscOptions|UtilityOptions]
  * @param word the option as string.
  */
@@ -489,7 +489,7 @@ static VALUE aspell_check(VALUE self, VALUE word) {
  * This method needs a block to work proper. Each misspelled word is yielded,
  * a correct word as result from the block is assumed.
  * Common use:
- * 
+ *
  * a = Aspell.new(...)
  * text = ...
  * a.correct_lines(text) { |badword|
@@ -497,7 +497,7 @@ static VALUE aspell_check(VALUE self, VALUE word) {
  *    puts a.suggest(badword).join(" | ")
  *    gets #the input is returned as right word
  * }
- * 
+ *
  * @param ary the array of strings to check.
  * @result an array holding all lines with corrected words.
  */
@@ -601,6 +601,7 @@ static VALUE aspell_correct_file(VALUE self, VALUE filename) {
  * @return array of strings: words that are misspelled.
  */
 static VALUE aspell_list_misspelled(VALUE self, VALUE ary) {
+    Check_Type(ary, T_ARRAY);
     VALUE result = rb_hash_new();
     //create checker
     AspellSpeller *speller = get_speller(self);
@@ -613,6 +614,7 @@ static VALUE aspell_list_misspelled(VALUE self, VALUE ary) {
     while(c<count) {
         //process line
         vline = RARRAY_PTR(ary)[c];
+        Check_Type(vline, T_STRING);
         aspell_document_checker_process(checker, StringValuePtr(vline), -1);
         //iterate over all misspelled words
         while (token = aspell_document_checker_next_misspelling(checker), token.len != 0) {
