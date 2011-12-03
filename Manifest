@@ -1,8 +1,10 @@
-test/simple_test.rb
-lib/raspell_stub.rb
-ext/raspell.h
-ext/raspell.c
-ext/extconf.rb
-README
-LICENSE
 CHANGELOG
+LICENSE
+Manifest
+README.rdoc
+Rakefile
+ext/extconf.rb
+ext/raspell.c
+ext/raspell.h
+lib/raspell_stub.rb
+test/simple_test.rb
