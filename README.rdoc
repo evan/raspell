@@ -15,8 +15,11 @@ If you use this software, please {make a donation}[http://blog.evanweaver.com/do
 
 Raspell requires Aspell version 0.6 (http://www.aspell.net) and at least one Aspell dictionary. 
 
-Mac: 
+MacPorts:
   sudo port install aspell aspell-dict-en
+
+Homebrew:
+  brew install aspell --lang=en,de
 
 Ubuntu: 
   sudo apt-get install aspell libaspell-dev aspell-en
