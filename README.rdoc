@@ -1,36 +1,31 @@
-
 raspell
 
 An interface binding for the Aspell spelling checker.
 
 == License
 
-Copyright 2007-2010 Cloudburst, LLC. Licensed under the GPL 2.0. See included LICENSE file. Portions copyright 2005 Matthias Veit, Biro Eszter and used with permission.  
-
-The public certificate for the gem is here[http://rubyforge.org/frs/download.php/25331/evan_weaver-original-public_cert.pem]. 
-
-If you use this software, please {make a donation}[http://blog.evanweaver.com/donate/], or {recommend Evan}[http://www.workingwithrails.com/person/7739-evan-weaver] at Working with Rails.
+Copyright 2007-2012 Cloudburst, LLC. Licensed under the GPL 2.0. See included LICENSE file. Portions copyright 2005 Matthias Veit, Biro Eszter and used with permission.  
 
 == Requirements
 
 Raspell requires Aspell version 0.6 (http://www.aspell.net) and at least one Aspell dictionary. 
 
 MacPorts:
-  sudo port install aspell aspell-dict-en
+  port install aspell aspell-dict-en
 
 Homebrew:
-  brew install aspell --lang=en,de
+  brew install aspell --lang=en
 
 Ubuntu: 
-  sudo apt-get install aspell libaspell-dev aspell-en
+  apt-get install aspell libaspell-dev aspell-en
   
 == Installation
 
 Mac:
-  sudo gem install raspell -- --with-opt-dir=/opt/local
+  gem install raspell -- --with-opt-dir=/opt/local
   
 Ubuntu:
-  sudo gem install raspell
+  gem install raspell
   
 == Usage
 
