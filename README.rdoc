@@ -2,6 +2,10 @@ raspell
 
 An interface binding for the Aspell spelling checker.
 
+== Deprecated
+
+This gem is unmaintained. Please use ffi-aspell[https://github.com/YorickPeterse/ffi-aspell] instead.
+
 == License
 
 Copyright 2007-2012 Cloudburst, LLC. Licensed under the GPL 2.0. See included LICENSE file. Portions copyright 2005 Matthias Veit, Biro Eszter and used with permission.  
